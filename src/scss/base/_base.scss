@@ -1,0 +1,25 @@
+@use "../abstracts/variables" as var;
+
+@font-face {
+  font-family: 'Inter';
+  src: url('assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf');
+}
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.grey-bg {
+  background-color: var.$grey-bg;
+}
