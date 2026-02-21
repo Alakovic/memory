@@ -1,0 +1,12 @@
+# Ignore SCSS folder README
+src/scss/README.md
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+
+# Misc
+.DS_Store
+.env
