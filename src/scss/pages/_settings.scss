@@ -1,10 +1,157 @@
-.content_settings {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  padding: 40px 150px;
+h1 {
+  margin: 0;
 }
 
-h1{
+h2 {
+  margin: 0;
+}
+
+.settings {
+  display: flex;
+  padding: 0 150px 50px 150px;
+
+  &__layout {
+    display: flex;
+    gap: 80px;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  &__config + &__summary {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__config {
+    flex: 1;
+  }
+
+  &__summary {
+    width: 500px;
+  }
+
+  &__section {
+    padding-bottom: 45px;
+  }
+
+  &__section-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding-left: 30px;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0 0px 60px;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+  }
+
+  &__label {
+    margin-left: 10px;
+    position: relative;
+  }
+
+  &__label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -60px;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: url("/assets/img/goldArrow_right.svg") no-repeat center;
+    background-size: contain;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &__radio {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid black;
+    border-radius: 50%;
+    position: relative;
     margin: 0;
+  }
+
+  &__radio:checked + &__label {
+    font-weight: 700;
+  }
+
+  &__radio:checked {
+    border-width: 1.5px;
+  }
+
+  &__radio:checked:before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: black;
+    border: 1px solid black;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__radio:hover::before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: black;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__radio:hover {
+    border-width: 1.5px;
+    cursor: pointer;
+  }
+
+  &__label:hover {
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__option:hover &__label::after {
+    opacity: 0.6;
+  }
+
+  &__radio:checked + &__label::after {
+    opacity: 1;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__theme {
+    width: 70%;
+    height: auto;
+  }
+
+  &__game-info {
+    margin-top: 50px;
+    width: 100%;
+    height: auto;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10px 20px;
+  }
 }

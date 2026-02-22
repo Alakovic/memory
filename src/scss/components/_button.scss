@@ -10,6 +10,10 @@
   padding: 20px 15px;
   transition: all 0.3s ease-in-out;
 
+  &--start {
+    padding: 5px 10px;
+  }
+
   &__text {
     font-size: 35px;
     color: var.$button-text-color;

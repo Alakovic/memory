@@ -7,13 +7,185 @@
     <link rel="icon" href="./assets/img/logo.jpg" type="image/x-icon" />
   </head>
   <body>
-    <div class="content_settings">
-      <div class="headline">
-        <div class="headline__title headline__title--highlight"> <h1>Settings</h1></div>
-       <div class="headline__underline"><img src="./assets/img/goldArrow_left.svg" alt=""></div>
+    <div class="headline--highlight">
+      <div class="headline__title headline__title--highlight">
+        <h1>Settings</h1>
+      </div>
+      <div class="headline__underline">
+        <img src="./assets/img/goldArrow_left.svg" alt="" />
       </div>
     </div>
-
+    <div class="settings">
+      <div class="settings__layout">
+        <div class="settings__config">
+          <div class="settings__section">
+            <div class="settings__section-header">
+              <img
+                class="settings__icon"
+                src="assets/img/palette.svg"
+                alt="palette"
+              />
+              <h2 class="settings__section-title">Game themes</h2>
+            </div>
+            <div class="settings__options">
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="code_vibes"
+                  name="game_themes"
+                  value="Code vibes theme"
+                  checked
+                />
+                <label class="settings__label" for="code_vibes"
+                  >Code vibes theme</label
+                >
+              </div>
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="gaming_theme"
+                  name="game_themes"
+                  value="Gaming theme"
+                />
+                <label class="settings__label" for="gaming_theme"
+                  >Gaming theme</label
+                >
+              </div>
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="da_projects_theme"
+                  name="game_themes"
+                  value="DA Projects theme"
+                />
+                <label class="settings__label" for="da_projects_theme"
+                  >DA Projects theme</label
+                >
+              </div>
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="foods_theme"
+                  name="game_themes"
+                  value="Foods theme"
+                />
+                <label class="settings__label" for="foods_theme"
+                  >Foods theme</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="settings__section">
+            <div class="settings__section-header">
+              <img
+                class="settings__icon"
+                src="assets/img/chess_pawn.svg"
+                alt="palette"
+              />
+              <h2 class="settings__section-title">Choose player</h2>
+            </div>
+            <div class="settings__options">
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="blue_player"
+                  name="player_choice"
+                  value="Blue"
+                />
+                <label class="settings__label" for="blue_player">Blue</label>
+              </div>
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="orange_player"
+                  name="player_choice"
+                  value="Orange"
+                />
+                <label class="settings__label" for="orange_player"
+                  >Orange</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="settings__section">
+            <div class="settings__section-header">
+              <img
+                class="settings__icon"
+                src="assets/img/style.svg"
+                alt="palette"
+              />
+              <h2 class="settings__section-title">Board size</h2>
+            </div>
+            <div class="settings__options">
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="16_cards"
+                  name="board_size"
+                  value="16 Cards"
+                />
+                <label class="settings__label" for="16_cards">16 Cards</label>
+              </div>
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="24_cards"
+                  name="board_size"
+                  value="24 Cards"
+                />
+                <label class="settings__label" for="24_cards">24 Cards</label>
+              </div>
+              <div class="settings__option">
+                <input
+                  class="settings__radio"
+                  type="radio"
+                  id="36_cards"
+                  name="board_size"
+                  value="36 Cards"
+                />
+                <label class="settings__label" for="36_cards">36 Cards</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settings__summary">
+          <div class="settings__image">
+            <img
+              class="settings__theme"
+              src="assets/img/gamingTheme.svg"
+              alt=""
+            />
+          </div>
+          <div class="settings__game-info">
+            <div class="settings__game-theme">
+              <p>Game theme</p>
+            </div>
+            <img src="assets/img/tableLine.svg" alt="" />
+            <div class="settings__player-choice">
+              <p>Player</p>
+            </div>
+            <img src="assets/img/tableLine.svg" alt="" />
+            <div class="settings__board-size">
+              <p>Board size</p>
+            </div>
+            <button class="button button--start">
+              <div class="button__image_left">
+                <img src="assets/img/smart_display.svg" alt="controller" />
+              </div>
+              <div class="button__text">Start</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script type="module" src="src/main.ts"></script>
 </html>
