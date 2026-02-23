@@ -160,27 +160,26 @@
           <div class="settings__image">
             <img
               class="settings__theme"
-              src="assets/img/gamingTheme.svg"
               alt=""
             />
           </div>
           <div class="settings__game-info">
-            <div class="settings__game-theme">
-              <p>Game theme</p>
-            </div>
-            <img src="assets/img/tableLine.svg" alt="" />
             <div class="settings__player-choice">
-              <p>Player</p>
+              <p class="settings__player-text" data-type="theme">Game theme</p>
             </div>
-            <img src="assets/img/tableLine.svg" alt="" />
-            <div class="settings__board-size">
-              <p>Board size</p>
+            <img src="assets/img/tableLine.svg" alt="line" />
+            <div class="settings__player-choice">
+              <p class="settings__player-text" data-type="player" >Player</p>
             </div>
-            <button class="button button--start">
-              <div class="button__image_left">
-                <img src="assets/img/smart_display.svg" alt="controller" />
+            <img src="assets/img/tableLine.svg" alt="line" />
+            <div class="settings__player-choice settings__player-choice--last">
+              <p class="settings__player-text" data-type="board">Board size</p>
+            </div>
+            <button   class="button button--start" onclick="window.location.href='game.html'"  disabled>
+              <div class="button__image_left button__image_left--smaller">
+                <img src="assets/img/smart_display.svg" alt="play button" />
               </div>
-              <div class="button__text">Start</div>
+              <div class="button__text button__text--small">Start</div>
             </button>
           </div>
         </div>

@@ -152,6 +152,21 @@ h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    padding: 10px 20px;
+    padding: 8px 10px;
+  }
+
+  &__player-choice {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    &--last {
+      padding-right: 10px;
+    }
+  }
+
+  &__player-text {
+    margin: 0;
   }
 }

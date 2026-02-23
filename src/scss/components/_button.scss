@@ -11,19 +11,27 @@
   transition: all 0.3s ease-in-out;
 
   &--start {
-    padding: 5px 10px;
+    padding: 5px 15px;
   }
 
   &__text {
     font-size: 35px;
     color: var.$button-text-color;
     font-weight: bold;
+    font-family: "Inter", sans-serif;
+    &--small{
+      font-size: 20px;
+    }
   }
 
   &__image_left,
   &__image_right {
     width: 40px;
     height: 40px;
+    &--smaller{
+      width: 30px;
+      height: 30px;
+    }
   }
 
   &__image_left img,
@@ -32,17 +40,23 @@
     height: 100%;
     transition: all 0.3s ease-in-out;
   }
+
+  &:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
 }
 
-.button:hover {
+.button:not(:disabled):hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
-.button:hover .button__image_left img {
+.button:not(:disabled):hover .button__image_left img {
   transform: rotate(-45deg);
 }
 
-.button:hover .button__image_right img {
+.button:not(:disabled):hover .button__image_right img {
   transform: scale(1.2);
 }
