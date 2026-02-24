@@ -1,8 +1,4 @@
-type ThemeId =
-  | "code_vibes"
-  | "gaming_theme"
-  | "da_projects_theme"
-  | "foods_theme";
+import { GameConfig, ThemeId } from "../types/game.types";
 
 const themeImages: Record<ThemeId, string> = {
   code_vibes: "./assets/img/codeTheme.svg",
@@ -18,6 +14,7 @@ function initSettings() {
   getPlayerChoice();
   getBoardSize();
   updateButton();
+  handleStart();
 }
 
 function getTheme() {
@@ -34,7 +31,7 @@ function getTheme() {
     radio.addEventListener("change", () => {
       img.src = themeImages[radio.id as ThemeId];
       text.textContent = radio.value;
-       updateButton();
+      updateButton();
     });
   });
   setInitialTheme(img, text);
@@ -63,7 +60,7 @@ function getPlayerChoice() {
   radios.forEach((radio) => {
     radio.addEventListener("change", () => {
       text.textContent = radio.value;
-       updateButton();
+      updateButton();
     });
   });
 }
@@ -80,18 +77,46 @@ function getBoardSize() {
   radios.forEach((radio) => {
     radio.addEventListener("change", () => {
       text.textContent = radio.value;
-       updateButton();
+      updateButton();
     });
   });
 }
 
 function updateButton() {
-  const theme = document.querySelectorAll<HTMLInputElement>('input[name="player_choice"]:checked');
-  const player = document.querySelectorAll<HTMLInputElement>('input[name="board_size"]:checked');
-  const board = document.querySelector<HTMLButtonElement>('input[name="board_size"]:checked');
-  const button = document.querySelector<HTMLButtonElement>(".button--start");
-  
+  let theme = document.querySelector<HTMLInputElement>('input[name="game_themes"]:checked');
+  let player = document.querySelector<HTMLInputElement>('input[name="player_choice"]:checked');
+  let board = document.querySelector<HTMLInputElement>('input[name="board_size"]:checked');
+  let button = document.querySelector<HTMLButtonElement>(".button--start");
+
+  if (!button) return;
+  button.disabled = !(theme && player && board);
+}
+
+function handleStart() {
+  let button = document.querySelector<HTMLButtonElement>(".button--start");
   if (!button) return;
 
-  button.disabled = !(theme&&player&&board);
+  button.addEventListener("click", () => {
+    let config = getGameConfig();
+    if (!config) return;
+
+    localStorage.setItem("gameConfig", JSON.stringify(config));
+    window.location.href = "./game.html";
+  });
+}
+
+function getGameConfig(): GameConfig {
+  let theme = document.querySelector<HTMLInputElement>('input[name="game_themes"]:checked');
+  let player = document.querySelector<HTMLInputElement>('input[name="player_choice"]:checked');
+  let board = document.querySelector<HTMLInputElement>('input[name="board_size"]:checked'); 
+
+  if (!theme || !player || !board) {
+    throw new Error("Game config incomplete");
+  }
+
+  return {
+    theme: theme.id as ThemeId,
+    playerChoice: player.value,
+    boardSize: board.value,
+  };
 }
