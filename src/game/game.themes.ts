@@ -23,6 +23,10 @@ export const themes: Record<ThemeId, ThemeData> = {
       "./assets/img/cards/codeVibes/code_vibes17.svg",
       "./assets/img/cards/codeVibes/code_vibes18.svg",
     ],
+     players: {
+      Blue: "./assets/img/player/blue.svg",
+      Orange: "./assets/img/player/orange.svg",
+    },
   },
 
   gaming_theme: {
@@ -47,6 +51,10 @@ export const themes: Record<ThemeId, ThemeData> = {
       "./assets/img/cards/gaming/gaming_card_17.svg",
       "./assets/img/cards/gaming/gaming_card_18.svg"
     ],
+     players: {
+      Blue: "./assets/img/player/blue_pawn.svg",
+      Orange: "./assets/img/player/orange_pawn.svg",
+    },
   },
 
   da_projects_theme: {
@@ -71,6 +79,10 @@ export const themes: Record<ThemeId, ThemeData> = {
       "./assets/img/cards/dAProject/dA_card17.svg",
       "./assets/img/cards/dAProject/dA_card18.svg"
     ],
+     players: {
+      Blue: "./assets/img/player/blue_pawn.svg",
+      Orange: "./assets/img/player/orange_pawn.svg",
+    },
   },
 
   foods_theme: {
@@ -95,5 +107,9 @@ export const themes: Record<ThemeId, ThemeData> = {
       "./assets/img/cards/food/food_card_17.svg",
       "./assets/img/cards/food/food_card_18.svg"
     ],
+     players: {
+      Blue: "./assets/img/player/blue_pawn.svg",
+      Orange: "./assets/img/player/orange_pawn.svg",
+    },
   },
 };

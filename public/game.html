@@ -8,13 +8,28 @@
   </head>
   <body>
     <div class="game">
-      <header class="game_header">
-        <div class="game_score"></div>
-        <div class="game_turn"></div>
-        <button class="game_exit"></button>
+      <header class="game__header">
+        <div class="game__score">
+          <div class="game__player game__player--player1">
+            <img class="game__player-icon"  alt="player icon" >
+            <span class="game__player-label"></span>
+            <p class="game__player-score">0</p>
+          </div>
+          <div class="game__player game__player--player2">
+            <img class="game__player-icon"  alt="player icon" >
+            <span class="game__player-label"></span>
+            <p class="game__player-score">0</p>
+          </div>
+        </div>
+        <div class="game__turn">
+          <span class="game__current-player">Current player:</span>
+          <img  class="game__current-icon" alt="current player icon">
+        </div>
+        <button class="game__exit"></button>
       </header>
-      <main class="game_board"></main>
+      <main class="game__board"></main>
     </div>
   </body>
   <script type="module" src="src/main.ts"></script>
 </html>
+
