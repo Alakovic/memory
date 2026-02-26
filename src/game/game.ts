@@ -29,6 +29,8 @@ class Game {
   constructor(private config: GameConfig) {
     this.setBackgroundColor();
     this.setHeader();
+    this.exitButton();
+    this.closeOverlayOnClickOutside();
   }
 
   setBackgroundColor(): void {
@@ -45,6 +47,8 @@ class Game {
     this.setPlayerLabel();
     this.currentPlayerColorSpan();
     this.setCurrentPlayerIcon();
+    this.setExitButton();
+    this.overlayButtons();
   }
 
   setPlayerIcons(): void {
@@ -106,12 +110,16 @@ class Game {
   }
 
   currentPlayerColorSpan(): void {
-    let color = document.querySelector<HTMLSpanElement>(".game__current-player");
+    let color = document.querySelector<HTMLSpanElement>(
+      ".game__current-player",
+    );
     if (!color) return;
-    if (this.config.theme === "da_projects_theme" || this.config.theme === "foods_theme") 
-      {
-        color.classList.add("game__current-player--blue");
-      }
+    if (
+      this.config.theme === "da_projects_theme" ||
+      this.config.theme === "foods_theme"
+    ) {
+      color.classList.add("game__current-player--blue");
+    }
   }
 
   setCurrentPlayerIcon(): void {
@@ -120,6 +128,96 @@ class Game {
     let themeData = themes[this.config.theme];
     let selectedPlayer = this.config.playerChoice; //Blue or Orange
     icon.src = themeData.players[selectedPlayer];
+  }
+
+  setExitButton(): void {
+    let exitButton = document.querySelector<HTMLButtonElement>(".game__exit");
+    let exitImage = document.querySelector<HTMLDivElement>(".game__exit-image");
+    if (!exitButton || !exitImage) return;
+    this.exitButtonTheme(exitButton, exitImage);
+  }
+
+  exitButtonTheme(
+    exitButton: HTMLButtonElement,
+    exitImage: HTMLDivElement,
+  ): void {
+    if (this.config.theme === "code_vibes") {
+      exitButton.classList.add("game__exit--code_vibes");
+    } else if (this.config.theme === "gaming_theme") {
+      exitButton.classList.add("game__exit--gaming_theme");
+    } else if (this.config.theme === "foods_theme") {
+      exitButton.classList.add("game__exit--foods_theme");
+      exitImage.classList.add("game__exit-image--foods_theme");
+    } else if (this.config.theme === "da_projects_theme") {
+      exitButton.classList.add("game__exit--da_projects_theme");
+      exitImage.classList.add("game__exit-image--da_projects_theme");
+    }
+  }
+
+  overlayButtons(): void {
+    let buttons = document.querySelectorAll<HTMLButtonElement>(".game__button");
+    if (buttons.length < 2) return;
+    this.overlayButtonsEvent(buttons);
+    this.overlayButtonsTheme(buttons);
+  }
+
+  overlayButtonsEvent(buttons: NodeListOf<HTMLButtonElement>): void {
+    buttons[0].addEventListener("click", () => {
+      this.hideOverlay();
+    });
+    buttons[1].addEventListener("click", () => {
+      window.location.href = "./index.html";
+    });
+  }
+
+  overlayButtonsTheme(buttons: NodeListOf<HTMLButtonElement>): void {
+    if (this.config.theme === "code_vibes") {
+      buttons[0].classList.add("game__button--code_vibes-cancel");  
+      buttons[1].classList.add("game__button--code_vibes-confirm");
+    } else if (this.config.theme === "gaming_theme") {
+      buttons[0].classList.add("game__button--gaming_theme-cancel");
+      buttons[1].classList.add("game__button--gaming_theme-confirm");
+    } else if (this.config.theme === "da_projects_theme") {
+      buttons[0].classList.add("game__button--da_projects_theme-cancel");
+      buttons[1].classList.add("game__button--da_projects_theme-confirm");
+    } else if (this.config.theme === "foods_theme") {
+      buttons[0].classList.add("game__button--foods_theme-cancel");
+      buttons[1].classList.add("game__button--foods_theme-confirm");
+    }
+  }    
+
+  showOverlay(): void {
+    let overlay = document.getElementById("overlay");
+    if (overlay) {
+      overlay.style.display = "flex";
+    }
+  }
+
+  hideOverlay(): void {
+    const overlay = document.getElementById("overlay");
+    if (overlay) {
+      overlay.style.display = "none";
+    }
+  }
+
+  closeOverlayOnClickOutside(): void {
+    let overlay = document.getElementById("overlay");
+    if (!overlay) return; 
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        this.hideOverlay();
+      } 
+    });
+  }
+
+  exitButton(): void {
+    let exitButton = document.querySelector<HTMLButtonElement>(".game__exit");
+    let overlay = document.getElementById("overlay");
+    if (!exitButton || !overlay) return;
+
+    exitButton.addEventListener("click", () => {
+      this.showOverlay();
+    });
   }
 }
 

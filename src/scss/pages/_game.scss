@@ -1,5 +1,20 @@
 @use "../abstracts/variables" as var;
 
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+}
+
 .game {
   height: 100vh;
   padding: 20px;
@@ -114,4 +129,219 @@
     width: 24px;
     height: 24px;
   }
+
+  &__exit {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 8px 15px;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid;
+
+    &--code_vibes {
+      background-color: #3c4b48;
+      border-color: #48b29f;
+      color: #ffffff;
+    }
+
+    &--gaming_theme {
+      background-color: #394b62;
+      border-color: #e71c4f;
+      color: #ffffff;
+      border-radius: 10px;
+    }
+
+    &--foods_theme {
+      background-color: #fff9f2;
+      border-color: #f3832d;
+      color: #f3832d;
+      border-radius: 10px;
+    }
+
+    &--da_projects_theme {
+      background-color: #bfe5f2;
+      border: none;
+      color: #1e7594;
+      border-radius: 10px;
+    }
+  }
+
+  &__exit-image {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__exit-image {
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: white;
+    }
+
+    &--foods_theme {
+      svg {
+        fill: #f3832d;
+      }
+    }
+
+    &--da_projects_theme {
+      svg {
+        fill: #1e7594;
+      }
+    }
+  }
+
+  &__exit-text {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  &__overlay {
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    height: auto;
+    background-color: #ffffff;
+    padding: 20px 30px;
+  }
+
+  &__headline {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+    text-align: center;
+  }
+
+  &__exit-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 50px;
+  }
+
+  &__button {
+    color: #ffffff;
+    padding: 20px 25px;
+    font-size: 20px;
+    font-weight: bold;
+    border: 2px solid;
+    cursor: pointer;
+    &--code_vibes-cancel {
+      background-color: #66cfbc;
+      border-color: #66cfbc;
+    }
+    &--code_vibes-confirm {
+      background-color: #ffffff;
+     border-color: #66cfbc;
+      color: #66cfbc;
+    }
+
+    &--gaming_theme-cancel {
+      background-color: #e71c4f;
+      border-color: #e71c4f;
+    }
+    &--gaming_theme-confirm {
+      background-color: #ffffff;
+      border-color: #e71c4f;
+      color: #e71c4f;
+    }
+    &--foods_theme-cancel {
+      background-color: #f3832d;
+      border-color: #f3832d;
+      color: #ffffff;
+    }
+    &--foods_theme-confirm {
+      background-color: #ffffff;
+      border-color: #f3832d;
+      color: #f3832d;
+    }
+    &--da_projects_theme-cancel {
+      background-color: #1e7594;
+      border-color: #1e7594;
+      color: #ffffff;
+    }
+    &--da_projects_theme-confirm {
+      background-color: #ffffff;
+      border-color: #1e7594;
+      color: #1e7594;
+    }
+  }
+}
+
+.game__exit--code_vibes:hover {
+  cursor: pointer;
+  background-color: #46615c;
+  border: 2px solid #48b29f;
+}
+
+.game__exit--gaming_theme:hover {
+  cursor: pointer;
+  background-color: #444863;
+  border: 2px solid #e71c4f;
+}
+
+.game__exit--gaming_theme:hover .game__exit-image svg {
+  fill: #e71c4f;
+}
+
+.game__exit--foods_theme:hover {
+  cursor: pointer;
+  background-color: #f3832d;
+  border: 2px solid #f3832d;
+  color: #ffffff;
+}
+
+.game__exit--foods_theme:hover .game__exit-image--foods_theme svg {
+  fill: #ffffff;
+}
+
+.game__exit--da_projects_theme:hover {
+  cursor: pointer;
+  background-color: #1e7594;
+  color: #ffffff;
+}
+
+.game__exit--da_projects_theme:hover .game__exit-image--da_projects_theme svg {
+  fill: #ffffff;
+}
+
+.game__button--code_vibes-cancel:hover {
+  background-color: #94ded0;
+}
+
+.game__button--code_vibes-confirm:hover {
+  background-color: #66cfbc;
+  color: #ffffff;
+}
+
+.game__button--gaming_theme-cancel:hover {
+  background-color: #ffffff;
+  color: #e71c4f;
+}
+
+.game__button--gaming_theme-confirm:hover {
+  background-color: #e71c4f;
+  color: #ffffff;
+}
+
+.game__button--foods_theme-cancel:hover {
+  background-color: #ffffff;
+  color: #f3832d;
+}
+
+.game__button--foods_theme-confirm:hover {
+  background-color: #f3832d;
+  color: #ffffff;
+}
+
+.game__button--da_projects_theme-cancel:hover {
+  background-color: #ffffff;
+  color: #1e7594;
+}
+
+.game__button--da_projects_theme-confirm:hover {
+  background-color: #1e7594;
+  color: #ffffff;
 }
