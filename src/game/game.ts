@@ -166,7 +166,7 @@ class Game {
       this.hideOverlay();
     });
     buttons[1].addEventListener("click", () => {
-      window.location.href = "./index.html";
+      window.location.href = "./settings.html";
     });
   }
 
@@ -188,15 +188,23 @@ class Game {
 
   showOverlay(): void {
     let overlay = document.getElementById("overlay");
-    if (overlay) {
+    let popUp = document.querySelector<HTMLDivElement>(".game__overlay");
+    if (overlay && popUp) {
       overlay.style.display = "flex";
+      setTimeout(() => {
+        popUp.classList.add("game__overlay--active");
+      }, 10);
     }
   }
 
   hideOverlay(): void {
-    const overlay = document.getElementById("overlay");
-    if (overlay) {
-      overlay.style.display = "none";
+    let overlay = document.getElementById("overlay");
+    let popUp = document.querySelector<HTMLDivElement>(".game__overlay");
+    if (overlay && popUp) {
+      popUp.classList.remove("game__overlay--active");
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 400);
     }
   }
 
