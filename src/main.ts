@@ -1,4 +1,5 @@
 import './scss/main.scss';
 import  './settings/settings';
-import './game/game';
+import { initGame } from './game/game';
 
+initGame();
