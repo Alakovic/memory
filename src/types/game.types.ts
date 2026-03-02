@@ -5,11 +5,12 @@ export type ThemeId =
   | "foods_theme";
 
 export type PlayerColor = "Blue" | "Orange";
+export type BoardSize = "16 Cards" | "24 Cards" | "36 Cards";
 
 export interface GameConfig {
   theme: ThemeId;
   playerChoice: PlayerColor;
-  boardSize: string;
+  boardSize: BoardSize;
 }
 
 export type ThemeData = {
@@ -20,3 +21,10 @@ export type ThemeData = {
     Orange: string;
   };
 };
+
+export interface Card {
+  id: number;
+  image: string;
+  isFlipped: boolean;
+  isMatched: boolean;
+}
