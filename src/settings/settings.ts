@@ -1,4 +1,4 @@
-import { GameConfig, ThemeId } from "../types/game.types";
+import { BoardSize, GameConfig, PlayerColor, ThemeId } from "../types/game.types";
 
 const themeImages: Record<ThemeId, string> = {
   code_vibes: "./assets/img/codeTheme.svg",
@@ -116,7 +116,7 @@ function getGameConfig(): GameConfig {
 
   return {
     theme: theme.id as ThemeId,
-    playerChoice: player.value,
-    boardSize: board.value,
+    playerChoice: player.value as PlayerColor,
+    boardSize: board.value as BoardSize,
   };
 }

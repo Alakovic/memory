@@ -20,6 +20,31 @@ export class Header {
     this.overlayButtons();
   }
 
+  updateScore(player: PlayerColor, score: number): void {
+    let scores = document.querySelectorAll<HTMLParagraphElement>(
+      ".game__player-score",
+    );
+
+    if (scores.length < 2) return;
+
+    if (player === this.config.playerChoice) {
+      scores[0].textContent = String(score);
+    } else {
+      scores[1].textContent = String(score);
+    }
+  }
+
+  updateCurrentPlayer(player: PlayerColor): void {
+    let icon = document.querySelector<HTMLImageElement>(
+      ".game__current-icon",
+    );
+
+    if (!icon) return;
+
+    let themeData = themes[this.config.theme];
+    icon.src = themeData.players[player];
+  }
+
   setBgColorHeader(): void {
     let setColor = document.querySelector<HTMLDivElement>(".game__header");
     if (!setColor) return;
@@ -44,7 +69,6 @@ export class Header {
     player[1].src = themeData.players[oppositePlayer];
   }
 
-  
   setPlayerScoreColors(): void {
     let scores = document.querySelectorAll<HTMLParagraphElement>(
       ".game__player-score",
@@ -58,17 +82,25 @@ export class Header {
   }
 
   setPlayerLabel(): void {
-    let labels = document.querySelectorAll<HTMLSpanElement>(".game__player-label");
+    let labels = document.querySelectorAll<HTMLSpanElement>(
+      ".game__player-label",
+    );
     if (labels.length < 2) return;
     if (this.config.theme !== "code_vibes") return;
     let selected = this.config.playerChoice; // "Blue" | "Orange"
     let opposite = selected === "Blue" ? "Orange" : "Blue";
     //Player 1
     labels[0].textContent = selected;
-    labels[0].classList.add("game__player-label--visible",`game__player-label--${selected.toLowerCase()}`);
+    labels[0].classList.add(
+      "game__player-label--visible",
+      `game__player-label--${selected.toLowerCase()}`,
+    );
     //Player 2
     labels[1].textContent = opposite;
-    labels[1].classList.add("game__player-label--visible",`game__player-label--${opposite.toLowerCase()}`);
+    labels[1].classList.add(
+      "game__player-label--visible",
+      `game__player-label--${opposite.toLowerCase()}`,
+    );
   }
 
   currentPlayerColorSpan(): void {
@@ -92,7 +124,7 @@ export class Header {
     icon.src = themeData.players[selectedPlayer];
   }
 
-   setExitButton(): void {
+  setExitButton(): void {
     let exitButton = document.querySelector<HTMLButtonElement>(".game__exit");
     let exitImage = document.querySelector<HTMLDivElement>(".game__exit-image");
     if (!exitButton || !exitImage) return;
@@ -134,7 +166,7 @@ export class Header {
 
   overlayButtonsTheme(buttons: NodeListOf<HTMLButtonElement>): void {
     if (this.config.theme === "code_vibes") {
-      buttons[0].classList.add("game__button--code_vibes-cancel");  
+      buttons[0].classList.add("game__button--code_vibes-cancel");
       buttons[1].classList.add("game__button--code_vibes-confirm");
     } else if (this.config.theme === "gaming_theme") {
       buttons[0].classList.add("game__button--gaming_theme-cancel");
@@ -146,7 +178,7 @@ export class Header {
       buttons[0].classList.add("game__button--foods_theme-cancel");
       buttons[1].classList.add("game__button--foods_theme-confirm");
     }
-  }   
+  }
 
   showOverlay(): void {
     let overlay = document.getElementById("overlay");
@@ -172,11 +204,11 @@ export class Header {
 
   closeOverlayOnClickOutside(): void {
     let overlay = document.getElementById("overlay");
-    if (!overlay) return; 
+    if (!overlay) return;
     overlay.addEventListener("click", (event) => {
       if (event.target === overlay) {
         this.hideOverlay();
-      } 
+      }
     });
   }
 

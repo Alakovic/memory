@@ -1,4 +1,4 @@
-import { Card, GameConfig } from "../types/game.types";
+import { Card, GameConfig, PlayerColor } from "../types/game.types";
 import { loadGameConfig } from "../services/game-config.services";
 import { Header } from "./header";
 import { themes } from "./game.themes";
@@ -9,13 +9,40 @@ export function initGame() {
 }
 
 class Game {
+  currentPlayer: PlayerColor;
+  cards: Card[] = [];
+  flippedCards: Card[] = [];
+  scores: Record<PlayerColor, number> = {
+    Blue: 0,
+    Orange: 0,
+  };
+  isProcessing: boolean = false;
+  header: Header;
+  matchSound: HTMLAudioElement;
+
   constructor(private config: GameConfig) {
+    this.currentPlayer = this.config.playerChoice;
     this.setBackgroundColor();
-    new Header(this.config);
+    this.header = new Header(this.config);
+    this.header.updateCurrentPlayer(this.currentPlayer);
     this.createGame();
+    this.matchSound = new Audio(this.getMatchSound());
   }
 
-  cards: Card[] = [];
+  getMatchSound(): string {
+    switch (this.config.theme) {
+      case "code_vibes":
+        return "./assets/sounds/digital-beep.wav";
+      case "gaming_theme":
+        return "./assets/sounds/gaming.wav";
+      case "foods_theme":
+        return "./assets/sounds/doorbell.wav";
+      case "da_projects_theme":
+        return "./assets/sounds/correct.wav";
+      default:
+        return "";
+    }
+  }
 
   setBackgroundColor(): void {
     let setColor = document.querySelector<HTMLDivElement>(".game");
@@ -53,10 +80,10 @@ class Game {
   }
 
   createGame(): void {
-    // Logic to create game cards based on the config
     this.generateCards();
     this.renderBoard();
     this.setGridLayout();
+    this.enableCardFlip();
   }
 
   generateCards(): void {
@@ -73,24 +100,137 @@ class Game {
   }
 
   renderBoard(): void {
-    // Logic to render the game board with the cards
     let board = document.querySelector<HTMLDivElement>(".game__board");
     if (!board) return;
     board.innerHTML = "";
-    const self = this;
+    let isSmall = this.config.boardSize === "36 Cards";
     this.cards.forEach((card) => {
-      board.innerHTML += cardTemplete(card);
+      board.innerHTML += this.cardTemplate(card, isSmall);
     });
+  }
 
-    function cardTemplete(card: Card): string {
-      let imageSrc = card.isFlipped ? card.image : self.getBackImage();
+  cardTemplate(card: Card, isSmall: boolean): string {
+    let cardClass = isSmall ? "game__card game__card--small" : "game__card";
 
-      return `
-        <div class="game__card" data-id="${card.id}">
-          <img class="game__card-image" src="${imageSrc}" alt="Card Image" />
+    return `
+        <div class="${cardClass}" data-id="${card.id}">
+          <div class="game__card-inner">
+            <div class="game__card-front"> 
+              <img class="game__card-image" src="${this.getBackImage()}" alt="Card Image" />
+            </div>
+            <div class="game__card-back">
+              <img class="game__card-image" src="${card.image}" alt="Card Image" />
+            </div>
+          </div>
         </div>
       `;
+  }
+
+  enableCardFlip(): void {
+    let cards = document.querySelectorAll<HTMLDivElement>(".game__card");
+    cards.forEach((card) => {
+      card.addEventListener("click", () => {
+        let cardId = parseInt(card.getAttribute("data-id") || "-1");
+        this.flipCard(cardId);
+      });
+    });
+  }
+
+  flipCard(cardId: number): void {
+    if (this.isProcessing) return;
+    let card = this.cards.find((c) => c.id === cardId);
+    if (!card || card.isFlipped || card.isMatched) return;
+    card.isFlipped = true;
+    let cardElement = document.querySelector<HTMLDivElement>(
+      `.game__card[data-id="${cardId}"]`,
+    );
+    if (cardElement) {
+      cardElement.classList.add("is-flipped");
     }
+    this.flippedCards.push(card);
+    if (this.flippedCards.length === 2) {
+      this.isProcessing = true;
+      this.checkForMatch();
+    }
+  }
+
+  checkForMatch(): void {
+    const [firstCard, secondCard] = this.flippedCards;
+    if (this.isMatch(firstCard, secondCard)) {
+      this.handleMatch(firstCard, secondCard);
+    } else {
+      this.mismatch(firstCard, secondCard);
+    }
+  }
+
+  isMatch(first: Card, second: Card): boolean {
+    return first.image === second.image;
+  }
+
+  handleMatch(first: Card, second: Card): void {
+    this.playMatchSound();
+    first.isMatched = true;
+    second.isMatched = true;
+    this.animateMatch(first.id);
+    this.animateMatch(second.id);
+    this.increaseScore();
+    this.resetFlippedCards();
+  }
+
+  playMatchSound(): void {
+    this.matchSound.currentTime = 0;
+    this.matchSound.play();
+  }
+
+  animateMatch(cardId: number): void {
+    const cardElement = document.querySelector<HTMLDivElement>(
+      `.game__card[data-id="${cardId}"]`,
+    );
+
+    if (!cardElement) return;
+
+    cardElement.classList.add("game__card--matched");
+
+    setTimeout(() => {
+      cardElement.classList.remove("game__card--matched");
+    }, 300);
+  }
+
+  increaseScore(): void {
+    this.scores[this.currentPlayer]++;
+    this.header.updateScore(
+      this.currentPlayer,
+      this.scores[this.currentPlayer],
+    );
+  }
+
+  mismatch(first: Card, second: Card): void {
+    setTimeout(() => {
+      this.unflipCard(first);
+      this.unflipCard(second);
+      this.resetFlippedCards();
+      this.switchPlayer();
+    }, 500);
+  }
+
+  unflipCard(card: Card): void {
+    card.isFlipped = false;
+    let cardElement = document.querySelector<HTMLDivElement>(
+      `.game__card[data-id="${card.id}"]`,
+    );
+    if (cardElement) {
+      cardElement.classList.remove("is-flipped");
+    }
+  }
+
+  resetFlippedCards(): void {
+    this.flippedCards = [];
+    this.isProcessing = false;
+  }
+
+  switchPlayer(): void {
+    this.currentPlayer = this.currentPlayer === "Blue" ? "Orange" : "Blue";
+    this.header.updateCurrentPlayer(this.currentPlayer);
   }
 
   getGridLayout(): string {
