@@ -28,3 +28,13 @@ export interface Card {
   isFlipped: boolean;
   isMatched: boolean;
 }
+
+export interface GameResult {
+  winner: PlayerColor | "Draw";
+  scores: {
+    Blue: number;
+    Orange: number;
+  };
+  theme: ThemeId;
+  playerChoice: PlayerColor;
+}

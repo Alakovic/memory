@@ -1,4 +1,4 @@
-import { GameConfig } from "../types/game.types";
+import { GameConfig, GameResult } from "../types/game.types";
 
  export function loadGameConfig(): GameConfig {
   let data = localStorage.getItem("gameConfig");
@@ -16,5 +16,23 @@ import { GameConfig } from "../types/game.types";
   } catch (error) {
     window.location.href = "./index.html";
     throw new Error("Invalid game config");
+  }
+}
+
+export function loadGameResult(): GameResult {
+  let data = localStorage.getItem("gameResult");
+  if (!data) {
+    window.location.href = "./index.html";
+    throw new Error("No game result found");
+  }
+  try {
+    let result = JSON.parse(data);
+    if (!result.winner || !result.scores?.Blue || !result.scores?.Orange) {
+      throw new Error("Game result incomplete");
+    }
+    return result as GameResult;
+  } catch {
+    window.location.href = "./index.html";
+    throw new Error("Invalid game result");
   }
 }

@@ -1,11 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory</title>
-</head>
-<body>
-    <h1>Hello from Game Over</h1>
-</body>
+    <link rel="icon" href="./assets/img/logo.jpg" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="end-screen">
+      <div class="end-screen__title">
+        <img class="end-screen__title-image" alt="game over" />
+      </div>
+      <p class="end-screen__text">Final Score:</p>
+      <div class="game__score">
+        <div class="game__player game__player--player1">
+          <img class="game__player-icon" alt="player icon" />
+          <span class="game__player-label"></span>
+          <p class="game__player-score"></p>
+        </div>
+        <div class="game__player game__player--player2">
+          <img class="game__player-icon" alt="player icon" />
+          <span class="game__player-label"></span>
+          <p class="game__player-score"></p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="src/main.ts"></script>
 </html>

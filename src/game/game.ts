@@ -6,6 +6,7 @@ import { themes } from "./game.themes";
 export function initGame() {
   const config = loadGameConfig();
   new Game(config);
+  localStorage.removeItem("gameConfig");
 }
 
 class Game {
@@ -269,8 +270,8 @@ class Game {
     let totalPairs = this.getNumberOfPairs();
     let totalScore = this.scores.Blue + this.scores.Orange;
     if (totalScore === totalPairs) {
-     this.endGame();
-    } 
+      this.endGame();
+    }
   }
 
   endGame(): void {
@@ -281,8 +282,11 @@ class Game {
       winner = "Orange";
     } else {
       winner = "Draw";
-    } 
-    localStorage.setItem("gameResult", JSON.stringify({ winner, scores: this.scores }));
-    window.location.href = "./endScreen.html";
     }
+    localStorage.setItem(
+      "gameResult",
+      JSON.stringify({ winner, scores: this.scores, theme: this.config.theme, playerChoice: this.config.playerChoice }),
+    );
+    window.location.href = "./endScreen.html";
+  }
 }

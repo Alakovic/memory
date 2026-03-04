@@ -1,0 +1,34 @@
+@use "../abstracts/variables" as var;
+
+.end-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  &--code_vibes {
+    background-color: var.$bg-theme-code;
+  }
+  &--gaming_theme {
+    background-color: var.$bg-theme-gaming;
+  }
+  &--da_projects_theme {
+    background-color: var.$bg-end-da_projects;
+  }
+  &--foods_theme {
+    background-color: var.$bg-end-foods;
+  }
+
+  &__title{
+    padding-bottom: 110px;
+  }
+
+  &__text {
+    margin: 0;
+    font-size: 25px;
+    color: #ffffff;
+    padding-bottom: 25px;
+  }
+}
