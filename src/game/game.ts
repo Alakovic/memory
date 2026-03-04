@@ -173,8 +173,11 @@ class Game {
     second.isMatched = true;
     this.animateMatch(first.id);
     this.animateMatch(second.id);
+    this.markMatched(first.id);
+    this.markMatched(second.id);
     this.increaseScore();
     this.resetFlippedCards();
+    this.checkGameEnd();
   }
 
   playMatchSound(): void {
@@ -251,4 +254,35 @@ class Game {
     if (!board) return;
     board.style.gridTemplateColumns = this.getGridLayout();
   }
+
+  markMatched(cardId: number): void {
+    let element = document.querySelector<HTMLDivElement>(
+      `.game__card[data-id="${cardId}"]`,
+    );
+
+    if (element) {
+      element.classList.add(`game__card--${this.currentPlayer.toLowerCase()}`);
+    }
+  }
+
+  checkGameEnd(): void {
+    let totalPairs = this.getNumberOfPairs();
+    let totalScore = this.scores.Blue + this.scores.Orange;
+    if (totalScore === totalPairs) {
+     this.endGame();
+    } 
+  }
+
+  endGame(): void {
+    let winner: PlayerColor | "Draw";
+    if (this.scores.Blue > this.scores.Orange) {
+      winner = "Blue";
+    } else if (this.scores.Orange > this.scores.Blue) {
+      winner = "Orange";
+    } else {
+      winner = "Draw";
+    } 
+    localStorage.setItem("gameResult", JSON.stringify({ winner, scores: this.scores }));
+    window.location.href = "./endScreen.html";
+    }
 }
