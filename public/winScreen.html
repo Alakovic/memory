@@ -1,12 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Memory</title>
-     <link rel="icon" href="./assets/img/logo.jpg" type="image/x-icon" />
-</head>
-<body>
-    
-</body>
+    <link rel="icon" href="./assets/img/logo.jpg" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="win-screen">
+      <div class="win-screen__game-winner">
+        <p class="win-screen__game-winner-text"></p>
+        <h1 class="win-screen__game-winner-title"></h1>
+      </div>
+      <div class="win-screen__img-box">
+        <img alt="win screen image" class="win-screen__img" />
+      </div>
+      <button class="game__exit" onclick="window.location.href='./index.html'"><p class="game__exit-text"></p></button>
+    </div>
+  </body>
+  <script type="module" src="src/main.ts"></script>
 </html>

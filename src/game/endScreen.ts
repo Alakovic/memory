@@ -12,7 +12,6 @@ export function initEndScreen() {
   setPlayerLabel(result.theme, result.playerChoice);
   setPlayerScoreColors(result.playerChoice);
   goToWinScreen();
-  localStorage.removeItem("gameResult");
 }
 
 function setBackgroundColor(theme: ThemeId): void {
@@ -38,14 +37,14 @@ function switchGameOverImage(
       gameOverImage.src = "./assets/img/gameOverCode.svg";
       break;
     case "gaming_theme":
-      gameOverImage.src = "./assets/img/gameOverGaming.svg";
+      gameOverImage.src = "./assets/img/gameOverGames.svg";
       break;
 
     case "foods_theme":
-      gameOverImage.src = "./assets/img/gameOverFoods.svg";
+      gameOverImage.src = "./assets/img/gameOverFood.svg";
       break;
     case "da_projects_theme":
-      gameOverImage.src = "./assets/img/gameOverDAProjects.svg";
+      gameOverImage.src = "./assets/img/gameOverProjects.svg";
       break;
     default:
       gameOverImage.src = "";
@@ -114,7 +113,13 @@ function setPlayerScoreColors(playerChoice: PlayerColor): void {
 }
 
 function goToWinScreen(): void {
+  let screen = document.querySelector<HTMLDivElement>(".end-screen");
+  if (!screen) return;
+
   setTimeout(() => {
-    window.location.href = "./winScreen.html";
+    screen.classList.add("fade-out");
+    setTimeout(() => {
+      window.location.replace("./winScreen.html");
+    }, 800);
   }, 2000);
 }
