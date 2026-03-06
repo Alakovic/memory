@@ -137,8 +137,6 @@ export class Header {
   ): void {
     if (this.config.theme === "code_vibes") {
       exitButton.classList.add("game__exit--code_vibes");
-    } else if (this.config.theme === "gaming_theme") {
-      exitButton.classList.add("game__exit--gaming_theme");
     } else if (this.config.theme === "foods_theme") {
       exitButton.classList.add("game__exit--foods_theme");
       exitImage.classList.add("game__exit-image--foods_theme");
@@ -168,9 +166,6 @@ export class Header {
     if (this.config.theme === "code_vibes") {
       buttons[0].classList.add("game__button--code_vibes-cancel");
       buttons[1].classList.add("game__button--code_vibes-confirm");
-    } else if (this.config.theme === "gaming_theme") {
-      buttons[0].classList.add("game__button--gaming_theme-cancel");
-      buttons[1].classList.add("game__button--gaming_theme-confirm");
     } else if (this.config.theme === "da_projects_theme") {
       buttons[0].classList.add("game__button--da_projects_theme-cancel");
       buttons[1].classList.add("game__button--da_projects_theme-confirm");

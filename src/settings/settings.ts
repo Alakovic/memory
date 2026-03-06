@@ -2,7 +2,6 @@ import { BoardSize, GameConfig, PlayerColor, ThemeId } from "../types/game.types
 
 const themeImages: Record<ThemeId, string> = {
   code_vibes: "./assets/img/codeTheme.svg",
-  gaming_theme: "./assets/img/gamingTheme.svg",
   da_projects_theme: "./assets/img/daProjects.svg",
   foods_theme: "./assets/img/foodTheme.svg",
 };

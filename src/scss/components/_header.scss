@@ -10,9 +10,6 @@
     &--code_vibes {
       background-color: var.$bg-header-code;
     }
-    &--gaming_theme {
-      background-color: var.$bg-header-gaming;
-    }
     &--da_projects_theme {
       background-color: var.$bg-header-da_projects;
     }
@@ -32,10 +29,11 @@
     &--code_vibes {
       background-color: var.$bg-score-code;
     }
-    &--gaming_theme,
-    &--da_projects_theme,
+    &--da_projects_theme {
+      background-color: var.$bg-score-da_projects;
+    }
     &--foods_theme {
-      background-color: var.$bg-score-gaming;
+      background-color: var.$bg-score-foods;
     }
   }
 
@@ -113,13 +111,6 @@
       background-color: #3c4b48;
       border-color: #48b29f;
       color: #ffffff;
-    }
-
-    &--gaming_theme {
-      background-color: #394b62;
-      border-color: #e71c4f;
-      color: #ffffff;
-      border-radius: 10px;
     }
 
     &--foods_theme {
@@ -222,16 +213,6 @@
       border-color: #66cfbc;
       color: #66cfbc;
     }
-
-    &--gaming_theme-cancel {
-      background-color: #e71c4f;
-      border-color: #e71c4f;
-    }
-    &--gaming_theme-confirm {
-      background-color: #ffffff;
-      border-color: #e71c4f;
-      color: #e71c4f;
-    }
     &--foods_theme-cancel {
       background-color: #f3832d;
       border-color: #f3832d;
@@ -261,16 +242,6 @@
   border: 2px solid #48b29f;
 }
 
-.game__exit--gaming_theme:hover {
-  cursor: pointer;
-  background-color: #444863;
-  border: 2px solid #e71c4f;
-}
-
-.game__exit--gaming_theme:hover .game__exit-image svg {
-  fill: #e71c4f;
-}
-
 .game__exit--foods_theme:hover {
   cursor: pointer;
   background-color: #f3832d;
@@ -298,16 +269,6 @@
 
 .game__button--code_vibes-confirm:hover {
   background-color: #66cfbc;
-  color: #ffffff;
-}
-
-.game__button--gaming_theme-cancel:hover {
-  background-color: #ffffff;
-  color: #e71c4f;
-}
-
-.game__button--gaming_theme-confirm:hover {
-  background-color: #e71c4f;
   color: #ffffff;
 }
 

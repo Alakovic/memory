@@ -29,34 +29,6 @@ export const themes: Record<ThemeId, ThemeData> = {
     },
   },
 
-  gaming_theme: {
-    back: "./assets/img/cards/gaming/gaming_back.svg",
-    faces: [
-      "./assets/img/cards/gaming/gaming_card_1.svg",
-      "./assets/img/cards/gaming/gaming_card_2.svg",
-      "./assets/img/cards/gaming/gaming_card_3.svg",
-      "./assets/img/cards/gaming/gaming_card_4.svg",
-      "./assets/img/cards/gaming/gaming_card_5.svg",
-      "./assets/img/cards/gaming/gaming_card_6.svg",
-      "./assets/img/cards/gaming/gaming_card_7.svg",
-      "./assets/img/cards/gaming/gaming_card_8.svg",
-      "./assets/img/cards/gaming/gaming_card_9.svg",
-      "./assets/img/cards/gaming/gaming_card_10.svg",
-      "./assets/img/cards/gaming/gaming_card_11.svg",
-      "./assets/img/cards/gaming/gaming_card_12.svg",
-      "./assets/img/cards/gaming/gaming_card_13.svg",
-      "./assets/img/cards/gaming/gaming_card_14.svg",
-      "./assets/img/cards/gaming/gaming_card_15.svg",
-      "./assets/img/cards/gaming/gaming_card_16.svg",
-      "./assets/img/cards/gaming/gaming_card_17.svg",
-      "./assets/img/cards/gaming/gaming_card_18.svg"
-    ],
-     players: {
-      Blue: "./assets/img/player/blue_pawn.svg",
-      Orange: "./assets/img/player/orange_pawn.svg",
-    },
-  },
-
   da_projects_theme: {
     back: "./assets/img/cards/dAProject/dA_back.svg",
     faces: [

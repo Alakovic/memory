@@ -36,10 +36,6 @@ function switchGameOverImage(
     case "code_vibes":
       gameOverImage.src = "./assets/img/gameOverCode.svg";
       break;
-    case "gaming_theme":
-      gameOverImage.src = "./assets/img/gameOverGames.svg";
-      break;
-
     case "foods_theme":
       gameOverImage.src = "./assets/img/gameOverFood.svg";
       break;

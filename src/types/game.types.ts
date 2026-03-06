@@ -1,6 +1,5 @@
 export type ThemeId =
   | "code_vibes"
-  | "gaming_theme"
   | "da_projects_theme"
   | "foods_theme";
 

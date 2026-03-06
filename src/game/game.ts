@@ -34,8 +34,6 @@ class Game {
     switch (this.config.theme) {
       case "code_vibes":
         return "./assets/sounds/digital-beep.wav";
-      case "gaming_theme":
-        return "./assets/sounds/gaming.wav";
       case "foods_theme":
         return "./assets/sounds/doorbell.wav";
       case "da_projects_theme":

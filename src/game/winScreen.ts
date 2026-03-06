@@ -108,8 +108,6 @@ function setHomeButton(theme: ThemeId): void {
 function exitButtonTheme(button: HTMLButtonElement, theme: ThemeId): void {
   if (theme === "code_vibes") {
     button.classList.add("game__exit--code_vibes");
-  } else if (theme === "gaming_theme") {
-    button.classList.add("game__exit--gaming_theme");
   } else if (theme === "foods_theme") {
     button.classList.add("game__exit--foods_theme");
   } else if (theme === "da_projects_theme") {
